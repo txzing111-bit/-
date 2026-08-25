@@ -8,6 +8,8 @@ import evolutionPrompt from './assets/evolution-prompt.png'
 import evolutionKnowledge from './assets/evolution-knowledge.png'
 import evolutionSkill from './assets/evolution-skill.png'
 import transferMontage from './assets/transfer-output-montage.png'
+import newYearThemeCase from './assets/new-year-theme-case.png'
+import newYearThemeFailures from './assets/new-year-theme-failures.png'
 import promptCaseUrl from '../素材/prompt资料包/worldcup_ai_design_chat_case.html?url'
 import knowledgeCaseUrl from '../素材/gpts资料包/chebangzhu_brand_image_engine_case_v4.html?url'
 import skillCaseUrl from '../素材/seklli/codex_theme_background_workflow_case.html?url'
@@ -70,7 +72,7 @@ function CostFeedback(){
 }
 
 function App(){
-  const [active,setActive]=useState('why'); const [progress,setProgress]=useState(0); const [menu,setMenu]=useState(false)
+  const [active,setActive]=useState('why'); const [progress,setProgress]=useState(0); const [menu,setMenu]=useState(false); const [preview,setPreview]=useState(null)
   useEffect(()=>{
     const reveals=[...document.querySelectorAll('.reveal')]
     const ro=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('visible')),{threshold:.12})
@@ -122,7 +124,7 @@ function App(){
       </section>
 
       <section id="why" className="section why">
-        <SectionHead eyebrow="01 / THE PATTERN" title={<>为什么高频设计需求<br/><em>值得工作流化？</em></>} desc="小程序首页主题视觉，看似每次不同，背后却共享着同一套生产逻辑。"/>
+        <SectionHead eyebrow="01 / THE PATTERN" title={<>为什么这个需求<br/><em>值得工作流化？</em></>} desc="29 个主题，看似不同，本质上使用同一套生产逻辑。"/>
         <div className="why-v2 reveal">
           <figure className="why-v2-device"><div className="why-v2-glow"/><div className="device-ring"/><img src={phoneUiComposite} alt="手持手机中的小程序汽车首页场景"/></figure>
           <div className="why-v2-analysis">
@@ -136,29 +138,29 @@ function App(){
         </div>
       </section>
 
-      <section id="cost" className="section dark-grid"><SectionHead eyebrow="02 / THE HIDDEN COST" title="真正重复的，从来不只是出图" desc="围绕图片不断发生的理解、判断、检查和修改，才是被低估的重复成本。"/>
+      <section id="cost" className="section dark-grid"><SectionHead eyebrow="02 / THE HIDDEN COST" title="原来的问题与成本" desc="真正重复的，不只是出图，而是整个判断过程。"/>
         <Reveal className="cost-story">
           <div className="cost-cycle">
             <div className="cost-cycle-head"><span>REWORK CYCLE / 07 STEPS</span></div>
             <div className="cost-cycle-steps">{['理解主题','找参考','写描述','生成','检查车辆','调整构图','修改输出'].map((x,i)=><React.Fragment key={x}><div className={i===3?'generation':''}><small>{String(i+1).padStart(2,'0')}</small><strong>{x}</strong></div>{i<6&&<i>→</i>}</React.Fragment>)}</div>
             <CostFeedback/>
           </div>
-          <aside className="cost-insight"><span>THE REAL COST</span><strong>重复的不是<br/><em>生成动作</em></strong><p>而是每次围绕图片重新发生的理解、判断、检查和修改。</p><div><b>07</b><small>个反复发生的环节</small></div></aside>
+          <aside className="cost-insight case-cost"><div className="case-compare"><button type="button" onClick={()=>setPreview({src:newYearThemeCase,title:'2026 新春主题 · 成品'})}><img src={newYearThemeCase} alt="2026 年新春主题成品"/><span><b>01 / 成品</b><small>最终上线视觉</small></span></button><button type="button" onClick={()=>setPreview({src:newYearThemeFailures,title:'2026 新春主题 · 失败案例'})}><img src={newYearThemeFailures} alt="2026 年新春主题失败案例集合"/><span><b>02 / 失败案例</b><small>需返工的输出</small></span></button></div><span>CASE SNAPSHOT / 新人从 0 到 1</span><strong>传统 AI 制作<br/><em>约 5 人天</em></strong><p>陆续完成理解需求、组织参考、生成、检查与修改。</p><div className="case-cost-metric"><b>05</b><small>人天<br/>传统 AI 设计制作</small></div></aside>
         </Reveal>
         <div className="cost-impact-grid reveal">{['新人重新理解历史要求','参考与提示词反复组织','车辆与构图失真返工','设计经验依赖个人传递','好结果难以稳定复现'].map((x,i)=><div key={x}><b>{String(i+1).padStart(2,'0')}</b><span>{x}</span><i>+</i></div>)}</div>
       </section>
 
-      <section id="evolution" className="section evolution"><SectionHead eyebrow="03 / EVOLUTION" title="工作方式，如何一步步演进" desc="工具没有替代判断，而是在逐步承接那些可重复、可描述、可验证的执行过程。"/>
+      <section id="evolution" className="section evolution"><SectionHead eyebrow="03 / EVOLUTION" title="工作方式，如何一步步演进" desc="从人工组织，到规则记忆，再到稳定执行。"/>
         <div className="evo-axis reveal"><span>个人操作</span><i/><b>团队能力</b><small>随机生成</small><i/><b>稳定交付</b></div>
         <div className="evo-grid">{evolution.map((e,i)=><Reveal className={`evo-card c${i}`} key={e.n}><div className="evo-top"><span>{e.n}</span><small>{e.tag}</small></div><div className="evo-visual"><img src={e.image} alt={`${e.title}阶段示意图`}/><b>{i===3?'✓':'+'}</b></div><h3>{e.title}</h3><p>{e.desc}</p><footer><span>{e.meta}</span><span>{e.score}</span></footer></Reveal>)}</div>
         <Reveal className="statement"><p><span>Prompt</span> 解决怎么说清楚，<span>GPTs</span> 解决怎么记住规则，<strong>Skill</strong> 解决怎么稳定执行。</p></Reveal>
       </section>
 
-      <section id="prompt" className="section"><SectionHead eyebrow="04 / FROM WORDS TO MEMORY" title="更懂设计，还不等于稳定执行"/>
+      <section id="prompt" className="section"><SectionHead eyebrow="04 / FROM WORDS TO MEMORY" title="Prompt 与 GPTs 解决了什么"/>
         <div className="compare-panels"><Reveal className="stage-panel"><span className="stage-num">01</span><div><small>PROMPT / INSTRUCTION</small><h3>把这一次，说清楚</h3><ul><li>快速探索主题方向</li><li>提高单次生成效率</li><li className="muted">依赖个人表达</li><li className="muted">规则散落在对话中</li></ul></div><CaseCover src={promptCaseUrl} tag="FIG. 01" title="世界杯主题视觉 · Prompt 对话案例" caption="从一次对话开始，反复校准主题、构图与表达。"/></Reveal><Reveal className="stage-panel accent"><span className="stage-num">02</span><div><small>GPTs / KNOWLEDGE</small><h3>让规则，被长期记住</h3><ul><li>保存车辆、构图、色彩规则</li><li>不同主题共享视觉基础</li><li>新人可直接调用历史规范</li><li className="muted">执行仍可能遗漏或漂移</li></ul></div><CaseCover src={knowledgeCaseUrl} tag="FIG. 02" title="车帮主 Image Engine · GPTs 配置案例" caption="将 Instructions 与 Knowledge 拆成可复用的设计规则。"/></Reveal></div>
       </section>
 
-      <section id="skill" className="section skill"><SectionHead eyebrow="05 / THE WORKFLOW" title="Skill 工作流如何运行" desc="不是更长的 Prompt，而是把理解、生成、检查和修改组织成固定流程。"/>
+      <section id="skill" className="section skill"><SectionHead eyebrow="05 / THE WORKFLOW" title="Skill 工作流如何运行" desc="把设计知识转化为可重复执行的流程。"/>
         <div className="flow-labels"><span>INPUT / 输入</span><span>EXECUTION / 执行</span><span>OUTPUT / 输出</span></div><Reveal className="workflow">{workflow.map((x,i)=><React.Fragment key={x}><div className={i===6?'check':''}><small>{String(i+1).padStart(2,'0')}</small><i>{i===6?'◇':i===7?'✓':'+'}</i><strong>{x}</strong>{i===6&&<span>失败 ↩ 重新处理</span>}</div>{i<workflow.length-1&&<b>→</b>}</React.Fragment>)}</Reveal>
         <div className="flow-notes reveal"><div><b>输入</b><p>主题类型 / 车辆参考 / 场景要求 / 输出尺寸 / 特殊限制</p></div><div><b>执行</b><p>调用规则与资产 / 组织指令 / 生成 / 检查 / 重新处理</p></div><div><b>输出</b><p>符合基础规范 / 可继续修改 / 进入人工验收 / 形成交付</p></div></div><CaseCover src={skillCaseUrl} tag="FIG. 03" title="设计主题背景生成工作流 · Skill 配置案例" caption="查看完整对话、配置规则、文件修改记录与最终主题成果。"/>
       </section>
@@ -167,7 +169,7 @@ function App(){
         <div className="layers">{layers.map((l,i)=><Reveal className="layer" key={l[0]}><small>{l[0]}</small><h3>{l[1]}</h3><p>{l[2]}</p><span style={{width:`${100-i*11}%`}}/></Reveal>)}</div><Reveal className="quote">把“我觉得不对”<br/>转化为“<em>具体哪里</em>不符合标准”。</Reveal>
       </section>
 
-      <section id="boundary" className="section boundary"><SectionHead eyebrow="07 / HUMAN × AI" title={<>自动化的是重复执行，<br/><em>不是设计责任。</em></>}/>
+      <section id="boundary" className="section boundary"><SectionHead eyebrow="07 / HUMAN × AI" title="自动化到什么程度" desc="自动化的是重复执行，不是设计责任。"/>
         <div className="roles"><Reveal className="role ai"><div className="role-head"><span>AI</span><small>负责高频、明确、可复现的执行</small></div>{['读取主题','调用规则与参考资产','组织生成指令','执行图片生成','检查部分明确问题','根据问题重新处理'].map((x,i)=><p key={x}><b>0{i+1}</b>{x}</p>)}</Reveal><div className="plus">＋</div><Reveal className="role human"><div className="role-head"><span>设计师</span><small>负责标准、语境与最终质量</small></div>{['判断主题表达是否准确','判断品牌气质是否成立','检查车辆和画面细节','完成最终验收','更新和完善规则'].map((x,i)=><p key={x}><b>0{i+1}</b>{x}</p>)}</Reveal></div><div className="collab">AI 执行 <b>＋</b> 部分自动检查 <b>＋</b> 人工最终验收</div>
       </section>
 
@@ -191,6 +193,7 @@ function App(){
 
       <section className="appendix"><details><summary><span>APPENDIX / 备用内容与答疑</span><b>展开附录 ＋</b></summary><div className="appendix-grid"><div><small>A</small><h3>七份知识文件</h3><p>Layout System · Vehicle System · Theme System · Color System · Brand Visual DNA · Prompt System · Design QA System</p></div><div><small>B</small><h3>设计质量检查清单</h3><p>主体检查 · 构图检查 · 品牌检查 · 主题检查 · 交付检查</p></div><div><small>C</small><h3>29 个主题规模构成</h3><p>新春主题 2 · 世界杯主题 17 · 其他主题 10</p></div></div></details><footer>AI / DESIGN WORKFLOW　© 2026　INTERNAL SHARE</footer></section>
     </main>
+    {preview&&<div className="image-preview" role="dialog" aria-modal="true" aria-label={preview.title} onClick={()=>setPreview(null)}><button type="button" aria-label="关闭全屏预览" onClick={()=>setPreview(null)}>×</button><div onClick={event=>event.stopPropagation()}><img src={preview.src} alt={preview.title}/><p>{preview.title}<small>点击空白处关闭</small></p></div></div>}
   </>
 }
 
