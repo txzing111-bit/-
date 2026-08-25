@@ -50,7 +50,7 @@ const transferCases = [
 function Reveal({children, className=''}) { return <div className={`reveal ${className}`}>{children}</div> }
 function SectionHead({eyebrow,title,desc}) { return <Reveal className="section-head"><span className="eyebrow">{eyebrow}</span><h2>{title}</h2>{desc&&<p>{desc}</p>}</Reveal> }
 function Placeholder({title,caption}) { return <div className="placeholder"><div className="placeholder-grid"/><span className="cross">＋</span><strong>{title}</strong><small>{caption} · 后续替换真实素材</small></div> }
-function CaseCover({src,tag,title,caption}) { return <a className="case-cover" href={src} target="_blank" rel="noreferrer" title={`打开：${title}`}><div className="case-cover-bar"><span>{tag}</span><b>打开完整案例 ↗</b></div><div className="case-cover-frame"><iframe src={src} title={`${title}封面预览`} loading="lazy" tabIndex="-1"/></div><span className="case-cover-caption"><strong>{title}</strong><span>{caption}</span></span></a> }
+function CaseCover({src,tag,title,caption}) { return <a className="case-cover" href={src} title={`打开：${title}`}><div className="case-cover-bar"><span>{tag}</span><b>打开完整案例 ↗</b></div><div className="case-cover-frame"><iframe src={src} title={`${title}封面预览`} loading="lazy" tabIndex="-1"/></div><span className="case-cover-caption"><strong>{title}</strong><span>{caption}</span></span></a> }
 function CostFeedback(){
   const ref=useRef(null)
   useEffect(()=>{
@@ -127,6 +127,7 @@ function App(){
           <figure className="why-v2-device"><div className="why-v2-glow"/><div className="device-ring"/><img src={phoneUiComposite} alt="手持手机中的小程序汽车首页场景"/></figure>
           <div className="why-v2-analysis">
             <div className="analysis-intro"><span>DEMAND ANATOMY / 需求结构</span><strong>固定产品骨架 ＋ 变化运营主题</strong><p>同一个界面容器，承载不断变化的主题视觉。</p></div>
+            <div className="frequency-proof"><header><span>OPERATING SCALE / 高频依据</span><b><strong>29</strong> 个主题视觉</b></header><div className="frequency-stats"><div><b>02</b><span>新春主题<small>节前预热与品牌节点</small></span></div><div><b>17</b><span>世界杯主题<small>围绕赛程持续更新</small></span></div><div><b>10</b><span>其他主题<small>节日、会员、科技、活动</small></span></div></div><p>全年运营节点连续发生；每一次都要在同一首页框架内更新主题表达。</p></div>
             <div className="analysis-group fixed-group"><header><span>01</span><div><b>固定不变</b><small>每次交付都必须满足</small></div><em>06 RULES</em></header><div className="analysis-items">{['图片比例','车辆位置','车型结构','页面安全区','品牌气质','验收标准'].map((x,i)=><span key={x}><small>{String(i+1).padStart(2,'0')}</small>{x}</span>)}</div></div>
             <div className="analysis-relation"><span>稳定规则</span><i>＋</i><span>有限变量</span><b>＝</b><strong>值得工作流化</strong></div>
             <div className="analysis-group variable-group"><header><span>02</span><div><b>持续变化</b><small>随运营节点持续更新</small></div><em>05 VARIABLES</em></header><div className="analysis-items">{['主题','场景','色彩','光影','环境元素'].map((x,i)=><span key={x}><small>{String(i+1).padStart(2,'0')}</small>{x}</span>)}</div></div>
