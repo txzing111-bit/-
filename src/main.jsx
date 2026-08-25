@@ -10,6 +10,7 @@ import evolutionSkill from './assets/evolution-skill.png'
 import transferMontage from './assets/transfer-output-montage.png'
 import promptCaseUrl from '../素材/prompt资料包/worldcup_ai_design_chat_case.html?url'
 import knowledgeCaseUrl from '../素材/gpts资料包/chebangzhu_brand_image_engine_case_v4.html?url'
+import skillCaseUrl from '../素材/seklli/codex_theme_background_workflow_case.html?url'
 
 const sections = [
   ['why','为什么工作流化'],['cost','重复的成本'],['evolution','工作方式演进'],['prompt','从 Prompt 到记忆'],
@@ -158,7 +159,7 @@ function App(){
 
       <section id="skill" className="section skill"><SectionHead eyebrow="05 / THE WORKFLOW" title="Skill 工作流如何运行" desc="不是更长的 Prompt，而是把理解、生成、检查和修改组织成固定流程。"/>
         <div className="flow-labels"><span>INPUT / 输入</span><span>EXECUTION / 执行</span><span>OUTPUT / 输出</span></div><Reveal className="workflow">{workflow.map((x,i)=><React.Fragment key={x}><div className={i===6?'check':''}><small>{String(i+1).padStart(2,'0')}</small><i>{i===6?'◇':i===7?'✓':'+'}</i><strong>{x}</strong>{i===6&&<span>失败 ↩ 重新处理</span>}</div>{i<workflow.length-1&&<b>→</b>}</React.Fragment>)}</Reveal>
-        <div className="flow-notes reveal"><div><b>输入</b><p>主题类型 / 车辆参考 / 场景要求 / 输出尺寸 / 特殊限制</p></div><div><b>执行</b><p>调用规则与资产 / 组织指令 / 生成 / 检查 / 重新处理</p></div><div><b>输出</b><p>符合基础规范 / 可继续修改 / 进入人工验收 / 形成交付</p></div></div><Placeholder title="Skill 实际运行界面" caption="FIG. 03"/>
+        <div className="flow-notes reveal"><div><b>输入</b><p>主题类型 / 车辆参考 / 场景要求 / 输出尺寸 / 特殊限制</p></div><div><b>执行</b><p>调用规则与资产 / 组织指令 / 生成 / 检查 / 重新处理</p></div><div><b>输出</b><p>符合基础规范 / 可继续修改 / 进入人工验收 / 形成交付</p></div></div><CaseCover src={skillCaseUrl} tag="FIG. 03" title="设计主题背景生成工作流 · Skill 配置案例" caption="查看完整对话、配置规则、文件修改记录与最终主题成果。"/>
       </section>
 
       <section id="system" className="section"><SectionHead eyebrow="06 / THE SYSTEM" title="工作流里，沉淀了什么？" desc="将隐性的设计经验拆成可读取、可执行、可检查的四层结构。"/>
